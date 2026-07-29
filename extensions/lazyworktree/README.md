@@ -56,3 +56,7 @@ Requires the [`lazyworktree`](https://www.npmjs.com/package/lazyworktree) CLI on
 This extension does not integrate with any task-tracking or session-delegation extension. If you use something like that alongside LazyWorktree, wire it up yourself against the `workspace` tool's structured tool-call results (`created`, `verified`, `launchHelp`, etc.) — this package intentionally has no knowledge of it.
 
 It also does not integrate with a separate "plan mode" or read-only-session extension. If your setup has one, it will not automatically gate `workspace create`/`rebase`/`merge`.
+
+## Known limitation: repositories without a git remote
+
+`workspace create` verifies the saved note by re-querying LazyWorktree with the new worktree's own directory as both the target and the working directory. The `lazyworktree` CLI derives a repository identity from that working directory; for a repository with a configured remote (the normal case) this identity is stable and the verification just works. For a repository with **no** git remote at all, `lazyworktree` falls back to a locally derived identity that is not stable across different checkouts of the same repository (the main checkout and a linked worktree can resolve to different identities), which can make `create` fail with "its saved note was empty" even though the worktree itself was created correctly. Configure `origin` (or any remote) on the repository to avoid this.
