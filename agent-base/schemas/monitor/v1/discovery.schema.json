@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "monitor/v1/discovery",
+  "type": "object",
+  "required": ["endpoint", "apiVersion", "daemonId", "startedAt", "capability"],
+  "properties": {
+    "endpoint": { "type": "string", "minLength": 1 },
+    "apiVersion": { "const": "monitor/v1" },
+    "daemonId": { "type": "string", "minLength": 1 },
+    "startedAt": { "type": "integer", "minimum": 0 },
+    "capability": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

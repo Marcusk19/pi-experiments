@@ -1,0 +1,59 @@
+{
+  "name": "@marcusk19/agent-base",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=22.19.0",
+    "pnpm": ">=10.15.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "files": [
+    "release/**",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -b packages/*",
+    "typecheck": "tsc -b packages/* --pretty false",
+    "test": "vitest run",
+    "check:go": "test -z \"$(gofmt -l cmd internal schemas/monitor/v1)\" && go vet ./... && go test -race ./... && go build ./...",
+    "check": "pnpm run typecheck && pnpm test && pnpm run check:go && pnpm run build && pi --no-extensions -e ./packages/pi-extension/dist/index.js -e ./packages/subagents/dist/index.js --list-models >/dev/null",
+    "build:release": "node packages/distribution/build.mjs",
+    "check:release": "pnpm run check && pnpm run build:release && pnpm run test:git-artifact",
+    "check:release-version": "node -e \"const p=require('./package.json'); const tag=process.env.GITHUB_REF_NAME; if (tag !== 'v'+p.version) throw new Error('tag '+tag+' does not match version '+p.version)\"",
+    "test:git-artifact": "node packages/distribution/test/git-artifact-smoke.mjs",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "extensions": [
+      "./release/hub-extension.js",
+      "./release/subagents-extension.js"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@a2a-js/sdk": "1.0.0",
+    "@agent-hub/client": "workspace:*",
+    "@agent-hub/hub": "workspace:*",
+    "@earendil-works/pi-agent-core": "^0.82.0",
+    "@earendil-works/pi-ai": "^0.82.0",
+    "@earendil-works/pi-coding-agent": "^0.82.0",
+    "@earendil-works/pi-tui": "^0.82.0",
+    "@types/node": "^22.15.0",
+    "typebox": "1.1.38",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

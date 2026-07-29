@@ -1,0 +1,2 @@
+import type { IncomingMessage,ServerResponse } from "node:http";import type { HubStore } from "../store.js";import type { CoordinationService } from "./task-service.js";import type { WorkerProviderCatalog } from "./worker-providers.js";import { handleA2ARequestInternal } from "../http.js";
+export function handleA2ARequest(req:IncomingMessage,res:ServerResponse,context:{baseUrl:string;registry:HubStore;coordination:CoordinationService;providers:WorkerProviderCatalog}){return handleA2ARequestInternal(req,res,context)}

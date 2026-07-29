@@ -1,0 +1,7 @@
+{
+  "endpoint": "http://127.0.0.1:4321",
+  "apiVersion": "monitor/v1",
+  "daemonId": "d1234567-abcd-4000-8000-000000000001",
+  "startedAt": 1784747000000,
+  "capability": "aabbccdd11223344556677889900aabbccdd11223344556677889900aabbccdd"
+}

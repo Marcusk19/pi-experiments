@@ -1,0 +1,46 @@
+{
+  "apiVersion": "monitor/v1",
+  "revision": 42,
+  "generatedAt": 1784748000000,
+  "daemonId": "d1234567-abcd-4000-8000-000000000001",
+  "startedAt": 1784747000000,
+  "totalSessions": 2,
+  "truncated": false,
+  "sessions": [
+    {
+      "monitorId": "aabbccdd11223344aabbccdd11223344",
+      "displayName": "fix-auth",
+      "adapter": "Pi",
+      "workspace": "quay",
+      "state": "running",
+      "activitySummary": "Running tests",
+      "activitySince": 1784747500000,
+      "attentionReasons": [],
+      "activeToolCount": 1,
+      "activeTaskState": "working",
+      "completeness": {
+        "activity": "complete",
+        "attention": "complete",
+        "tools": "complete",
+        "tasks": "complete"
+      }
+    },
+    {
+      "monitorId": "eeff00112233445566778899aabbccdd",
+      "displayName": "docs",
+      "adapter": "Claude",
+      "workspace": "agent-base",
+      "state": "idle",
+      "activitySummary": "Idle",
+      "activitySince": 1784747200000,
+      "attentionReasons": [],
+      "activeToolCount": 0,
+      "completeness": {
+        "activity": "unavailable",
+        "attention": "complete",
+        "tools": "complete",
+        "tasks": "complete"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+A2A/
+dist/
+coverage/
+.superpowers/
+*.log
+*.tsbuildinfo
+*.git-install-test.tar

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "monitor/v1/snapshot",
+  "type": "object",
+  "required": ["apiVersion", "revision", "generatedAt", "daemonId", "startedAt", "totalSessions", "truncated", "sessions"],
+  "properties": {
+    "apiVersion": { "const": "monitor/v1" },
+    "revision": { "type": "integer", "minimum": 0 },
+    "generatedAt": { "type": "integer", "minimum": 0 },
+    "daemonId": { "type": "string", "minLength": 1 },
+    "startedAt": { "type": "integer", "minimum": 0 },
+    "totalSessions": { "type": "integer", "minimum": 0 },
+    "truncated": { "type": "boolean" },
+    "sessions": {
+      "type": "array",
+      "maxItems": 500,
+      "items": { "$ref": "#/$defs/sessionSummary" }
+    }
+  },
+  "$defs": {
+    "sessionSummary": {
+      "type": "object",
+      "required": ["monitorId", "displayName", "adapter", "workspace", "state", "activitySummary", "activitySince", "attentionReasons", "activeToolCount", "completeness"],
+      "properties": {
+        "monitorId": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "adapter": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "workspace": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "state": { "enum": ["running", "waiting", "idle"] },
+        "activitySummary": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "activitySince": { "type": "integer", "minimum": 0 },
+        "attentionReasons": { "type": "array", "maxItems": 8, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+        "activeToolCount": { "type": "integer", "minimum": 0 },
+        "activeTaskState": { "enum": ["submitted", "working"] },
+        "completeness": { "$ref": "#/$defs/completeness" }
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "required": ["activity", "attention", "tools", "tasks"],
+      "properties": {
+        "activity": { "enum": ["complete", "unavailable", "truncated"] },
+        "attention": { "enum": ["complete", "unavailable", "truncated"] },
+        "tools": { "enum": ["complete", "unavailable", "truncated"] },
+        "tasks": { "enum": ["complete", "unavailable", "truncated"] }
+      }
+    }
+  }
+}

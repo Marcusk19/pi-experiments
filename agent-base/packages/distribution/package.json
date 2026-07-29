@@ -1,0 +1,13 @@
+{
+  "name": "@agent-hub/distribution-build",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@agent-hub/client": "workspace:*",
+    "@agent-hub/pi-extension": "workspace:*",
+    "@agent-hub/hub": "workspace:*",
+    "@agent-hub/subagents": "workspace:*",
+    "esbuild": "^0.25.9"
+  }
+}

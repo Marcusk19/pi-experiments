@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "monitor/v1/detail",
+  "type": "object",
+  "required": ["apiVersion", "monitorId", "displayName", "adapter", "adapterVersion", "cwd", "workspace", "state", "activitySummary", "startedAt", "lastActivityAt", "attentionReasons", "tools", "tasks", "timeline", "completeness"],
+  "properties": {
+    "apiVersion": { "const": "monitor/v1" },
+    "monitorId": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+    "displayName": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "adapter": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "adapterVersion": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "cwd": { "type": "string", "minLength": 1, "maxLength": 4096 },
+    "workspace": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "state": { "enum": ["running", "waiting", "idle"] },
+    "activitySummary": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "startedAt": { "type": "integer", "minimum": 0 },
+    "lastActivityAt": { "type": "integer", "minimum": 0 },
+    "attentionReasons": { "type": "array", "maxItems": 8, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+    "tools": { "type": "array", "maxItems": 50 },
+    "tasks": { "type": "array", "maxItems": 50 },
+    "timeline": { "type": "array", "maxItems": 100 },
+    "completeness": {
+      "type": "object",
+      "required": ["activity", "attention", "tools", "tasks"],
+      "properties": {
+        "activity": { "enum": ["complete", "unavailable", "truncated"] },
+        "attention": { "enum": ["complete", "unavailable", "truncated"] },
+        "tools": { "enum": ["complete", "unavailable", "truncated"] },
+        "tasks": { "enum": ["complete", "unavailable", "truncated"] }
+      }
+    }
+  }
+}

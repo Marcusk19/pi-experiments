@@ -1,0 +1,3 @@
+import type { IncomingMessage,ServerResponse } from "node:http";import type { Clock } from "./clock.js";import type { HubStore } from "./store.js";import type { SessionLifecycle } from "./http.js";import { handleHubRequestInternal } from "./http.js";
+export function handleHubRequest(req:IncomingMessage,res:ServerResponse,context:{rootToken:Buffer;store:HubStore;sessions:SessionLifecycle;clock:Clock;startedAt:number}){return handleHubRequestInternal(req,res,{root:context.rootToken,store:context.store,sessions:context.sessions,clock:context.clock,startedAt:context.startedAt})}
+export type { SessionLifecycle } from "./http.js";

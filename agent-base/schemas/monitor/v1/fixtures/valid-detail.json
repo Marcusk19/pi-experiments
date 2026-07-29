@@ -1,0 +1,49 @@
+{
+  "apiVersion": "monitor/v1",
+  "monitorId": "aabbccdd11223344aabbccdd11223344",
+  "displayName": "fix-auth",
+  "adapter": "Pi",
+  "adapterVersion": "0.82.0",
+  "cwd": "/Users/dev/workspace/quay",
+  "workspace": "quay",
+  "state": "running",
+  "activitySummary": "Running tests",
+  "startedAt": 1784747000000,
+  "lastActivityAt": 1784747500000,
+  "attentionReasons": [],
+  "tools": [
+    {
+      "toolCallId": "call-1",
+      "toolName": "bash",
+      "status": "running",
+      "startedAt": 1784747400000
+    }
+  ],
+  "tasks": [
+    {
+      "taskId": "instance:task-1",
+      "role": "target",
+      "state": "working",
+      "createdAt": 1784747300000,
+      "updatedAt": 1784747400000
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": 1784747400000,
+      "category": "tool.started",
+      "label": "bash"
+    },
+    {
+      "timestamp": 1784747300000,
+      "category": "activity.summary",
+      "label": "Running tests"
+    }
+  ],
+  "completeness": {
+    "activity": "complete",
+    "attention": "complete",
+    "tools": "complete",
+    "tasks": "complete"
+  }
+}

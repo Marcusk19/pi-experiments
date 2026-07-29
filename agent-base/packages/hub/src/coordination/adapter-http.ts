@@ -1,0 +1,2 @@
+import type { IncomingMessage,ServerResponse } from "node:http";import type { HubStore } from "../store.js";import type { DeliveryRouter } from "./delivery-router.js";import { handleAdapterRequestInternal } from "../http.js";
+export function handleAdapterRequest(req:IncomingMessage,res:ServerResponse,context:{registry:HubStore;router:DeliveryRouter}){return handleAdapterRequestInternal(req,res,context.registry,context.router)}
