@@ -1,0 +1,25 @@
+{
+	"name": "pi-lazyworktree",
+	"version": "0.1.0",
+	"description": "Pi extension for LazyWorktree-managed Git workspaces: prepare, create, and safely rebase or merge isolated worktrees with main-checkout mutation guards.",
+	"keywords": [
+		"pi-package",
+		"pi-extension",
+		"git",
+		"git-worktree",
+		"worktree",
+		"workspace"
+	],
+	"type": "module",
+	"peerDependencies": {
+		"@earendil-works/pi-ai": "*",
+		"@earendil-works/pi-coding-agent": "*",
+		"@earendil-works/pi-tui": "*",
+		"typebox": "*"
+	},
+	"pi": {
+		"extensions": [
+			"./index.ts"
+		]
+	}
+}
